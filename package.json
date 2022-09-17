@@ -1,6 +1,6 @@
 {
   "name": "typescript-node-base",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "",
   "main": "main.js",
   "scripts": {
@@ -18,7 +18,6 @@
     "@commitlint/config-conventional": "latest",
     "@types/jest": "^29.0.3",
     "@types/node": "latest",
-    "@types/puppeteer": "latest",
     "husky": "latest",
     "jest": "^29.0.3",
     "standard-version": "latest",
@@ -26,12 +25,7 @@
     "typescript": "latest"
   },
   "dependencies": {
-    "concurrently": "latest",
-    "puppeteer": "latest",
-    "puppeteer-cluster": "latest",
-    "puppeteer-extra": "latest",
-    "puppeteer-extra-plugin-adblocker": "latest",
-    "puppeteer-extra-plugin-stealth": "latest"
+    "fast-xml-parser": "^4.0.10"
   },
   "nvm": {
     "node": "16.9.1"

@@ -1,8 +1,8 @@
-const fs = require("fs/promises");
+const { readFile } = require("fs/promises");
 import { XMLParser } from "fast-xml-parser";
 
 export async function readXMLFile(filepath: string) {
-  const xmlDataStr = await fs.readFile(filepath);
+  const xmlDataStr = await readFile(filepath);
 
   const options = {
     ignoreAttributes: false,

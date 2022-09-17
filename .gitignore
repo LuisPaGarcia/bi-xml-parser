@@ -2,3 +2,5 @@ node_modules/
 dist/
 keychain/
 src/config.env.ts
+input/*.xml
+output/*.json

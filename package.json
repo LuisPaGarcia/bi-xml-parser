@@ -1,0 +1,45 @@
+{
+  "name": "typescript-node-base",
+  "version": "1.1.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "test": "jest",
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "prestart": "npm run build",
+    "release": "standard-version"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@commitlint/cli": "latest",
+    "@commitlint/config-conventional": "latest",
+    "@types/jest": "^29.0.3",
+    "@types/node": "latest",
+    "@types/puppeteer": "latest",
+    "husky": "latest",
+    "jest": "^29.0.3",
+    "standard-version": "latest",
+    "ts-jest": "^29.0.1",
+    "typescript": "latest"
+  },
+  "dependencies": {
+    "concurrently": "latest",
+    "puppeteer": "latest",
+    "puppeteer-cluster": "latest",
+    "puppeteer-extra": "latest",
+    "puppeteer-extra-plugin-adblocker": "latest",
+    "puppeteer-extra-plugin-stealth": "latest"
+  },
+  "nvm": {
+    "node": "16.9.1"
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -e $HUSKY_GIT_PARAMS",
+      "pre-commit": "lint-staged"
+    }
+  }
+}

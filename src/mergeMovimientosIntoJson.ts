@@ -1,7 +1,9 @@
-import { readdir, writeFile } from "fs/promises";
+import { constants } from "fs";
+import { readdir, writeFile, access, unlink } from "fs/promises";
 import {
   buildDirectoryOutput,
   buildFilepathOutput,
+  buildFilepathOutputMerge,
 } from "./utils/buildOutputPath";
 
 type MovimientoObjType = {
@@ -32,6 +34,14 @@ type MovimientosJsonType = {
 };
 
 export async function mergeMovimientosIntoJson() {
+  // read the output dir
+  // check if merge.json exists
+  // if exists, delete
+  const mergeFileExists: boolean = await checkIfMergeAlreadyExist();
+  console.log("mergeFileExits", mergeFileExists);
+  if (mergeFileExists) {
+    await deleteMergeFile();
+  }
   const filesArr = await readdir(buildDirectoryOutput());
   const jsonFiles = filesArr
     .filter((file) => file.endsWith(".json"))
@@ -48,4 +58,22 @@ export async function mergeMovimientosIntoJson() {
 
   console.log(mergeContent.length);
   await writeFile(buildFilepathOutput("merge"), JSON.stringify(mergeContent));
+}
+
+async function checkIfMergeAlreadyExist(): Promise<boolean> {
+  try {
+    await access(buildFilepathOutputMerge(), constants.F_OK);
+    return true;
+  } catch (error) {
+    return false;
+  }
+}
+
+async function deleteMergeFile() {
+  try {
+    await unlink(buildFilepathOutputMerge());
+    console.log("previus merge file has been erased.");
+  } catch (error) {
+    console.log(error)
+  }
 }

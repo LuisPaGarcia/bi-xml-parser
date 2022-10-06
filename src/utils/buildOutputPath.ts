@@ -10,3 +10,7 @@ export function buildFilepathOutput(
 export function buildDirectoryOutput() {
   return join(__dirname, "../../", "output");
 }
+
+export function buildFilepathOutputMerge(){
+  return buildFilepathOutput('merge')
+}

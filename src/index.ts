@@ -24,6 +24,7 @@ import { mergeMovimientosIntoJson } from "./mergeMovimientosIntoJson";
       await writeJSONFile(buildFilepathOutput(filename), content);
       console.log("write:", buildFilepathOutput(filename));
     }
+    
     await mergeMovimientosIntoJson();
     console.log("end!");
   } catch (error) {

@@ -4,3 +4,4 @@ keychain/
 src/config.env.ts
 input/*.xml
 output/*.json
+.parcel-cache/

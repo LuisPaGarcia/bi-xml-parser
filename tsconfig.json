@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "jsx": "react",
     "target": "esnext",
     "module": "commonjs",
     "lib": ["esnext", "dom"],
@@ -15,6 +16,7 @@
       "src": ["src"]
     },
     "declaration": true,
+    "resolveJsonModule": true
   },
   "include": ["./src/"],
   "exclude": ["node_modules", "**/*.spec.ts"]

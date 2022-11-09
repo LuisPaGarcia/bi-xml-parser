@@ -8,7 +8,8 @@
     "build": "tsc",
     "start": "node dist/index.js",
     "prestart": "npm run build",
-    "release": "standard-version"
+    "release": "standard-version",
+    "frontend": "parcel serve ./src/frontend/index.html --no-cache"
   },
   "keywords": [],
   "author": "",
@@ -20,12 +21,18 @@
     "@types/node": "latest",
     "husky": "latest",
     "jest": "^29.0.3",
+    "process": "^0.11.10",
     "standard-version": "latest",
     "ts-jest": "^29.0.1",
     "typescript": "latest"
   },
   "dependencies": {
-    "fast-xml-parser": "^4.0.10"
+    "@types/react": "^18.0.25",
+    "@types/react-dom": "^18.0.8",
+    "fast-xml-parser": "^4.0.10",
+    "parcel": "^2.7.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
   },
   "nvm": {
     "node": "16.9.1"

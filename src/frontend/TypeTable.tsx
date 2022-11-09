@@ -2,18 +2,22 @@ import * as React from "react";
 import { useData } from "./hooks/useData";
 import { ObjectType } from "./types/ObjectType";
 
-export const Table = () => {
+export function TypeTable() {
   const state = useData();
   return (
     <table>
       <thead>
-        <th>fecha</th>
-        <th>tt</th>
-        <th>descripcion</th>
-        <th>numero-documento</th>
-        <th>debe</th>
-        <th>haber</th>
-        <th>saldo</th>
+        <th>Descripcion</th>
+        <th>Comida</th>
+        <th>Ocio</th>
+        <th>Gasolina</th>
+        <th>Servicios</th>
+        <th>Super</th>
+        <th>Ropa y Zapatos</th>
+        <th>Transferencia Electronica</th>
+        <th>Cajero</th>
+        <th>Otros</th>
+        <th>Prestamos</th>
       </thead>
       <tbody>
         {state.map(
@@ -32,4 +36,4 @@ export const Table = () => {
       </tbody>
     </table>
   );
-};
+}

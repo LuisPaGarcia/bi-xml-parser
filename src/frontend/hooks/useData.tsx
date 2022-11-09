@@ -13,5 +13,5 @@ export function useData() {
     };
     getData();
   }, []);
-  return state;
+  return { state, stateSet };
 }

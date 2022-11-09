@@ -1,23 +1,19 @@
 import * as React from "react";
-import { useData } from "./hooks/useData";
-import { ObjectType } from "./types/ObjectType";
+import { useData } from "../hooks/useData";
+import { ObjectType } from "../types/ObjectType";
 
-export function TypeTable() {
-  const state = useData();
+export const Table = () => {
+  const { state } = useData();
   return (
     <table>
       <thead>
-        <th>Descripcion</th>
-        <th>Comida</th>
-        <th>Ocio</th>
-        <th>Gasolina</th>
-        <th>Servicios</th>
-        <th>Super</th>
-        <th>Ropa y Zapatos</th>
-        <th>Transferencia Electronica</th>
-        <th>Cajero</th>
-        <th>Otros</th>
-        <th>Prestamos</th>
+        <th>fecha</th>
+        <th>tt</th>
+        <th>descripcion</th>
+        <th>numero-documento</th>
+        <th>debe</th>
+        <th>haber</th>
+        <th>saldo</th>
       </thead>
       <tbody>
         {state.map(
@@ -36,4 +32,4 @@ export function TypeTable() {
       </tbody>
     </table>
   );
-}
+};

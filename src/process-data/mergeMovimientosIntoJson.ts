@@ -1,3 +1,4 @@
+import { randomUUID } from "crypto";
 import { constants } from "fs";
 import { readdir, writeFile, access, unlink } from "fs/promises";
 import {
@@ -56,7 +57,13 @@ export async function mergeMovimientosIntoJson() {
     mergeContent = [...mergeContent, ...movimientos];
   }
 
-  console.log(mergeContent.length);
+  // Adding a unique id for each object
+  mergeContent = mergeContent.map((movimiento) => ({
+    ...movimiento,
+    id: randomUUID(),
+  }));
+
+  console.log(mergeContent.length, mergeContent[0]);
   await writeFile(buildFilepathOutput("merge"), JSON.stringify(mergeContent));
 }
 
@@ -74,6 +81,6 @@ async function deleteMergeFile() {
     await unlink(buildFilepathOutputMerge());
     console.log("previus merge file has been erased.");
   } catch (error) {
-    console.log(error)
+    console.log(error);
   }
 }

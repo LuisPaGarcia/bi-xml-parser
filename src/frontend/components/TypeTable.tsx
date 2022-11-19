@@ -2,114 +2,71 @@ import * as React from "react";
 import { useData } from "../hooks/useData";
 import { ObjectType } from "../types/ObjectType";
 
-export function TypeTable() {
-  const { state } = useData();
+const rubrosArr = [
+  "Descripcion",
+  "Comida",
+  "Ocio",
+  "Gasolina",
+  "Servicios",
+  "Super",
+  "Ropa y Zapatos",
+  "Transferencia Electronica",
+  "Cajero",
+  "Otros",
+  "Prestamos",
+];
+// Remove `Description`
+const rubroArrShift = rubrosArr.slice(1);
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    event.preventDefault();
-    console.log(event.target.value);
+export function TypeTable() {
+  const { state, stateSet } = useData();
+
+  const handleChange = ({
+    item,
+    rubro,
+  }: {
+    item: ObjectType;
+    rubro: string;
+  }) => {
+    console.log(item, rubro);
+    stateSet((prevState) => {
+      return prevState.map((obj) => {
+        if (obj.id === item.id) {
+          return {
+            ...obj,
+            tipo: rubro,
+          };
+        }
+        return obj;
+      });
+    });
   };
 
   return (
     <table>
       <thead>
-        <th>Descripcion</th>
-        <th>Comida</th>
-        <th>Ocio</th>
-        <th>Gasolina</th>
-        <th>Servicios</th>
-        <th>Super</th>
-        <th>Ropa y Zapatos</th>
-        <th>Transferencia Electronica</th>
-        <th>Cajero</th>
-        <th>Otros</th>
-        <th>Prestamos</th>
+        <tr>
+          {rubrosArr.map((rubro) => (
+            <th key={rubro}>{rubro}</th>
+          ))}
+        </tr>
       </thead>
       <tbody>
         {state.map(
           (item: ObjectType): JSX.Element => (
-            <tr>
+            <tr key={item.id}>
               <td>{item["descripcion"]}</td>
-              <td>
-                <input
-                  onChange={handleChange}
-                  name="type"
-                  type="radio"
-                  value="Comida"
-                />
-              </td>
-              <td>
-                <input
-                  onChange={handleChange}
-                  name="type"
-                  type="radio"
-                  value="Ocio"
-                />
-              </td>
-              <td>
-                <input
-                  onChange={handleChange}
-                  name="type"
-                  type="radio"
-                  value="Gasolina"
-                />
-              </td>
-              <td>
-                <input
-                  onChange={handleChange}
-                  name="type"
-                  type="radio"
-                  value="Servicios"
-                />
-              </td>
-              <td>
-                <input
-                  onChange={handleChange}
-                  name="type"
-                  type="radio"
-                  value="Super"
-                />
-              </td>
-              <td>
-                <input
-                  onChange={handleChange}
-                  name="type"
-                  type="radio"
-                  value="Ropa y Zapatos"
-                />
-              </td>
-              <td>
-                <input
-                  onChange={handleChange}
-                  name="type"
-                  type="radio"
-                  value="Transferencia Electronica"
-                />
-              </td>
-              <td>
-                <input
-                  onChange={handleChange}
-                  name="type"
-                  type="radio"
-                  value="Cajero"
-                />
-              </td>
-              <td>
-                <input
-                  onChange={handleChange}
-                  name="type"
-                  type="radio"
-                  value="Otros"
-                />
-              </td>
-              <td>
-                <input
-                  onChange={handleChange}
-                  name="type"
-                  type="radio"
-                  value="Prestamos"
-                />
-              </td>
+              {rubroArrShift.map((rubro) => (
+                <td key={rubro}>
+                  <input
+                    onChange={() => handleChange({ item, rubro })}
+                    name={`${item.descripcion}-${item.id}`}
+                    type="radio"
+                    value={rubro}
+                    checked={rubro === item.tipo}
+                  />
+                </td>
+              ))}
             </tr>
           )
         )}
